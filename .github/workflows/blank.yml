@@ -18,12 +18,27 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-24.04
+          - ubuntu-24.04-arm
+          - windows-2025
+          - windows-11-arm
+          - macos-26-intel
+          - macos-26
+        qt_ver:
+          - 5.14.0
+          - 6.8.0
+          
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: 5.14.0
+          version: ${{ matrix.qt_ver }}
           target: android
