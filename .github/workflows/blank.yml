@@ -23,4 +23,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Install Qt
-        uses: pzhlkj6612/forked-install-qt-action@chore/self-reference-for-full-sha
+        uses: jurplel/install-qt-action@v4
+        with:
+          target: android
